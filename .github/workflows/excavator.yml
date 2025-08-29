@@ -3,6 +3,9 @@ on:
   schedule:
     # run every 4 hours
     - cron: '20 */4 * * *'
+permissions:
+  contents: write
+  pull-requests: write
 name: Excavator
 jobs:
   excavate:
