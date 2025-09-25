@@ -1,10 +1,10 @@
 {
-    "version": "10781.15.3.0131",
+    "version": "10781.18.1.0512",
     "description": "UniVPN Client 远程接入终端方案",
     "homepage": "https://www.leagsoft.com/",
     "license": "Unknown",
-    "url": "https://download.leagsoft.com/download/UniVPN/win/univpn-win-full-10781.15.3.0131-signed.zip#/dl.7z",
-    "hash": "3086004b9aaa39d6e0a5f2230ebcc1402fab0af65aa2d78355782157ed389530",
+    "url": "https://download.leagsoft.com/download/UniVPN/win/univpn-win-full-10781.18.1.0512-signed.zip#/dl.7z",
+    "hash": "388575f847c7dbe24b6bd654a654d2ea91ab46193b514a10f2f35d4d190d9d07",
     "installer": {
         "script": "Start-Process -Wait -FilePath `\"$dir\\univpn-win-full-$version-signed\\univpn-win-full-$version-signed.exe`\""
     },
