@@ -16,7 +16,7 @@
     },
     "checkver": {
         "url": "https://www.synology.cn/zh-cn/releaseNote/SynologyDriveClient",
-        "regex": "(?<patch>\\d+\\.\\d+\\.\\d+-\\d+)",
+        "regex": "<h3> Version: <span>3.5.2-16111</span></h3>",
         "replace": "${patch}"
     },
     "autoupdate": {
