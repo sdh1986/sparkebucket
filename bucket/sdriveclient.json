@@ -15,8 +15,8 @@
         ]
     },
     "checkver": {
-        "url": "https://www.synology.cn/zh-cn/releaseNote/SynologyDriveClient",
-        "regex": "<h3>\\s*Version:\\s*<span>([\\d.-]+)</span></h3>",
+        "url": "https://www.synology.cn/zh-cn/releaseNote/SynologyDriveClient#ver_",
+        "regex": "(?<patch>\\d+\\.\\d+\\.\\d+-\\d+)",
         "replace": "${patch}"
     },
     "autoupdate": {
