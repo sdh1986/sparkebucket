@@ -15,7 +15,7 @@
         ]
     },
     "checkver": {
-        "url": "https://www.synology.com/api/v1/release_note/enu/Synology%20Drive%20Client",
+        "url": "https://www.synology.cn/zh-cn/releaseNote/SynologyDriveClient",
         "jsonpath": "$.data.notes[0].version"
     },
     "autoupdate": {
