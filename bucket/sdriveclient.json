@@ -15,9 +15,9 @@
         ]
     },
     "checkver": {
-        "url": "https://www.synology.cn/zh-cn/releaseNote/SynologyDriveClient",
-        "regex": "<h3>.*?(?:Version|版本)[:：]?\\s*<span>([\\d.\\-]+)</span>"
-    },
+    "url": "https://www.synology.com/api/releaseNote/find?product=SynologyDriveClient&lang=en-global",
+    "jsonpath": "$.items[0].version"
+},
     "autoupdate": {
         "url": "https://global.synologydownload.com/download/Utility/SynologyDriveClient/$version/Windows/Installer/x86_64/Synology%20Drive%20Client-$version-x64.msi#/SynologyDriveClient.msi_",
         "hash": {
