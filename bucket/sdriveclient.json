@@ -16,8 +16,7 @@
     },
     "checkver": {
         "url": "https://www.synology.cn/zh-cn/releaseNote/SynologyDriveClient/",
-        "regex": "Version: 3.5.2-16111",
-        "replace": "${patch}"
+        "regex": "<h3>\\s*(?:Version|版本):\\s*<span>([\\d.-]+)</span></h3>"
     },
     "autoupdate": {
         "url": "https://global.synologydownload.com/download/Utility/SynologyDriveClient/$version/Windows/Installer/x86_64/Synology%20Drive%20Client-$version-x64.msi#/SynologyDriveClient.msi_",
