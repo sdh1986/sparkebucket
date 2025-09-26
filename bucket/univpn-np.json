@@ -1,28 +1,32 @@
 {
     "version": "10781.18.1.0512",
     "description": "UniVPN Client 远程接入终端方案",
-    "homepage": "https://www.synology.com/en-us/dsm/feature/drive",
+    "homepage": "https://www.leagsoft.com/",
     "license": {
-        "identifier": "Unknown",
-        "url": "https://www.synology.com/en-us/company/legal/terms_conditions"
+        "identifier": "Proprietary",
+        "url": "https://www.leagsoft.com/doc/article/103107.html"
     },
+    "url": "https://download.leagsoft.com/download/UniVPN/win/univpn-win-full-10781.18.1.0512-signed.zip",
     "hash": "46AB8BE55F01FAA48B423823AF12D298868201B0DE2ADEBD831F0C839FA0AB8F",
     "installer": {
-        "script": "Invoke-ExternalCommand msiexec -ArgumentList @('/i', \"$dir\\univpn-win-full-10781.18.1.0512-signed.msi\", '/qr') -RunAs | Out-Null"
+        "script": [
+            "Expand-7zipArchive \"$dir\\$fname\"",
+            "$msi = (Get-ChildItem \"$dir\" -Filter '*.msi').FullName",
+            "Invoke-ExternalCommand msiexec -ArgumentList @('/i', $msi, '/qr') -RunAs | Out-Null"
+        ]
     },
     "uninstaller": {
         "script": [
-            "Invoke-ExternalCommand msiexec -ArgumentList @('/x', \"$dir\\univpn-win-full-10781.18.1.0512-signed.msi\", '/qn') -RunAs | Out-Null",
-            "Remove-Item \"$dir\\univpn-win-full-10781.18.1.0512-signed.msi\""
+            "$msi = (Get-ChildItem \"$dir\" -Filter '*.msi').FullName",
+            "Invoke-ExternalCommand msiexec -ArgumentList @('/x', $msi, '/qn') -RunAs | Out-Null"
         ]
     },
     "checkver": {
         "url": "https://www.leagsoft.com/doc/article/103107.html",
-        "regex": "(?<patch>\\d+\\.\\d+\\.\\d+\\.\\d+)",
-        "replace": "${patch}"
+        "regex": "univpn-win-full-([\\d.]+)-signed"
     },
     "autoupdate": {
-        "url": "https://download.leagsoft.com/download/UniVPN/win/univpn-win-full-$version-signed.zip#/dl.7z",
+        "url": "https://download.leagsoft.com/download/UniVPN/win/univpn-win-full-$version-signed.zip",
         "hash": {
             "mode": "download"
         }
