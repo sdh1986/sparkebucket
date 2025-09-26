@@ -1,17 +1,19 @@
 {
     "version": "10781.18.1.0512",
     "description": "UniVPN Client 远程接入终端方案",
-    "homepage": "https://www.leagsoft.com/",
-    "license": "Unknown",
-    "url": "https://download.leagsoft.com/download/UniVPN/win/univpn-win-full-10781.18.1.0512-signed.zip#/dl.7z",
-    "hash": "388575f847c7dbe24b6bd654a654d2ea91ab46193b514a10f2f35d4d190d9d07",
+    "homepage": "https://www.synology.com/en-us/dsm/feature/drive",
+    "license": {
+        "identifier": "Unknown",
+        "url": "https://www.synology.com/en-us/company/legal/terms_conditions"
+    },
+    "hash": "46AB8BE55F01FAA48B423823AF12D298868201B0DE2ADEBD831F0C839FA0AB8F",
     "installer": {
-        "script": "Start-Process -Wait -FilePath `\"$dir\\univpn-win-full-$version-signed\\univpn-win-full-$version-signed.exe`\""
+        "script": "Invoke-ExternalCommand msiexec -ArgumentList @('/i', \"$dir\\univpn-win-full-10781.18.1.0512-signed.msi\", '/qr') -RunAs | Out-Null"
     },
     "uninstaller": {
         "script": [
-            "Start-Process -Wait -FilePath `\"$dir\\univpn-win-full-$version-signed\\univpn-win-full-$version-signed.exe`\"",
-            "Remove-Item -Recurse \"$dir\\univpn-win-full-$version-signed\""
+            "Invoke-ExternalCommand msiexec -ArgumentList @('/x', \"$dir\\univpn-win-full-10781.18.1.0512-signed.msi\", '/qn') -RunAs | Out-Null",
+            "Remove-Item \"$dir\\univpn-win-full-10781.18.1.0512-signed.msi\""
         ]
     },
     "checkver": {
