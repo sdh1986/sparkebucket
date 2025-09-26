@@ -11,14 +11,14 @@
     "installer": {
         "script": [
             "Expand-Archive -Path $cache -DestinationPath \"$dir\" -Force",
-            "$msi = (Get-ChildItem \"$dir\" -Filter '*.msi').FullName",
-            "Invoke-ExternalCommand msiexec -ArgumentList @('/i', $msi, '/qr') -RunAs | Out-Null"
+            "$exe = (Get-ChildItem \"$dir\" -Filter '*.exe').FullName",
+            "Start-Process -Wait -FilePath $exe"
         ]
     },
     "uninstaller": {
         "script": [
-            "$msi = (Get-ChildItem \"$dir\" -Filter '*.msi').FullName",
-            "Invoke-ExternalCommand msiexec -ArgumentList @('/x', $msi, '/qn') -RunAs | Out-Null"
+            "$exe = (Get-ChildItem \"$dir\" -Filter '*.exe').FullName",
+            "Start-Process -Wait -FilePath $exe -ArgumentList '/x', '/qn'"
         ]
     },
     "checkver": {
