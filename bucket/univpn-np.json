@@ -17,12 +17,13 @@
     },
     "uninstaller": {
         "script": [
-            "$app = (Get-ItemProperty 'HKLM:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\*' -EA 0, 'HKLM:\\SOFTWARE\\WOW6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\*' -EA 0 | Where-Object { $_.DisplayName -match 'UniVPN' })[0]",
+            "$paths = 'HKLM:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\*', 'HKLM:\\SOFTWARE\\WOW6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\*'",
+            "$app = Get-ItemProperty $paths -ErrorAction SilentlyContinue | Where-Object { $_.DisplayName -match 'UniVPN' } | Select-Object -First 1",
             "if ($app) {",
             "    $uninst = $app.UninstallString",
             "    if ($uninst) {",
             "        $uninst = $uninst -replace ' /S$', ''",
-            "        Invoke-Expression \"& $uninst /S\"",
+            "        Invoke-Expression \"& `\"$uninst`\" /S\"",
             "    }",
             "}",
             "else {",
