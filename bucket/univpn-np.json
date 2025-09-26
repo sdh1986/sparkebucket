@@ -10,7 +10,7 @@
     "hash": "388575f847c7dbe24b6bd654a654d2ea91ab46193b514a10f2f35d4d190d9d07",
     "installer": {
         "script": [
-            "Expand-Archive -Path \"$dir\\$fname\" -DestinationPath \"$dir\" -Force",
+            "Expand-Archive -Path $cache -DestinationPath \"$dir\" -Force",
             "$msi = (Get-ChildItem \"$dir\" -Filter '*.msi').FullName",
             "Invoke-ExternalCommand msiexec -ArgumentList @('/i', $msi, '/qr') -RunAs | Out-Null"
         ]
