@@ -8,7 +8,7 @@
     },
     "architecture": {
         "64bit": {
-            "url": "https://archive.synology.com/download/Utility/SynologyDriveClient/3.5.2-16111/Windows/per-machine/SynologyDrive-3.5.2-16111-x64.msi",
+            "url": "https://archive.synology.com/download/Utility/SynologyDriveClient/3.5.2-16111/Windows/per-machine/SynologyDrive-3.5.2-16111-x64.msi#/SynologyDriveClient.msi_",
             "hash": "ee3d45ba658412e81307f3de262deb5a8e2c399ddda0702aa5c6211a234a24d6"
         }
     },
@@ -26,7 +26,7 @@
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://archive.synology.com/download/Utility/SynologyDriveClient/$version/Windows/per-machine/SynologyDrive-$version-x64.msi"
+                "url": "https://archive.synology.com/download/Utility/SynologyDriveClient/$version/Windows/per-machine/SynologyDrive-$version-x64.msi#/SynologyDriveClient.msi_"
             }
         }
     }
