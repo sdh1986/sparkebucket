@@ -9,7 +9,7 @@
     "architecture": {
         "64bit": {
             "url": "https://global.synologydownload.com/download/Utility/SynologyDriveClient/3.5.2-16111/Windows/Installer/x86_64/Synology%20Drive%20Client-3.5.2-16111-x64.msi#/SynologyDriveClient.msi_",
-            "hash": "ee3d45ba658412e81307f3de262deb5a8e2c399ddda0702aa5c6211a234a24d6"
+            "hash": "7cc58dca192e352bb1d473c0ef5a529898e251437dd66fc78e79d47a1280cf81"
         }
     },
     "extract_dir": "Synology",
