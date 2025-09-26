@@ -7,7 +7,7 @@
         "url": "https://www.synology.com/en-us/company/legal/terms_conditions"
     },
     "url": "https://global.synologydownload.com/download/Utility/SynologyDriveClient/3.2.0-13238/Windows/Installer/x86_64/Synology%20Drive%20Client-3.2.0-13238-x64.msi#/SynologyDriveClient.msi_",
-    "hash": "7cc58dca192e352bb1d473c0ef5a529898e251437dd66fc78e79d47a1280cf81",
+    "hash": "0265C8BA838CBFF7C5677A399ED4BE0AE3F68050D2B9C415E19E8E4368206353",
     "installer": {
         "script": "Invoke-ExternalCommand msiexec -ArgumentList @('/i', \"$dir\\SynologyDriveClient.msi_\", '/qr') -RunAs | Out-Null"
     },
@@ -22,13 +22,9 @@
         "regex": ">([\\d\\.-]+)<"
     },
     "autoupdate": {
-        "architecture": {
-            "64bit": {
-                "url": "https://archive.synology.com/download/Utility/SynologyDriveClient/$version/Windows/Installer/x86_64/SynologyDrive%20Drive%20Client-$version-x64.msi#/SynologyDriveClient.msi_"
-            },
-            "hash": {
-                "mode": "download"
-            }
+        "url": "https://global.synologydownload.com/download/Utility/SynologyDriveClient/$version/Windows/Installer/x86_64/Synology%20Drive%20Client-$version-x64.msi#/SynologyDriveClient.msi_",
+        "hash": {
+            "mode": "download"
         }
     }
 }
