@@ -17,8 +17,17 @@
     },
     "uninstaller": {
         "script": [
-            "$exe = (Get-ChildItem -Path \"$dir\" -Filter '*.exe' -Recurse | Select-Object -First 1).FullName",
-            "if ($exe) { Start-Process -Wait -FilePath $exe -ArgumentList '/uninstall /S' -Verb RunAs | Out-Null }"
+            "$app = (Get-ItemProperty 'HKLM:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\*' -EA 0, 'HKLM:\\SOFTWARE\\WOW6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\*' -EA 0 | Where-Object { $_.DisplayName -match 'UniVPN' })[0]",
+            "if ($app) {",
+            "    $uninst = $app.UninstallString",
+            "    if ($uninst) {",
+            "        $uninst = $uninst -replace ' /S$', ''",
+            "        Invoke-Expression \"& $uninst /S\"",
+            "    }",
+            "}",
+            "else {",
+            "    Write-Warning 'Could not find UniVPN in the list of installed programs.'",
+            "}"
         ]
     },
     "checkver": {
