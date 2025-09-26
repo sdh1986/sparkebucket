@@ -1,27 +1,38 @@
 {
-    "version": "3.5.0-16084",
-    "description": "Synology Drive Client 是 DSM 附加套件 Synology Drive Server 的桌面实用程序",
-    "homepage": "https://www.synology.com/",
-    "license": "Unknown",
-    "url": "https://global.synologydownload.com/download/Utility/SynologyDriveClient/3.5.0-16084/Windows/Installer/x86_64/Synology%20Drive%20Client-3.5.0-16084-x64.msi#/SynologyDriveClient.msi_",
-    "hash": "5fc1eb8af607fab0e77add9a5667ee60a10541cdc26c652cb292da484ade09f5",
-    "installer": {
-        "script": "Invoke-ExternalCommand msiexec -ArgumentList @('/i', \"$dir\\SynologyDriveClient.msi_\", '/qr') -RunAs | Out-Null"
-    },
-    "uninstaller": {
-        "script": [
-            "Invoke-ExternalCommand msiexec -ArgumentList @('/x', \"$dir\\SynologyDriveClient.msi_\", '/qn') -RunAs | Out-Null",
-            "Remove-Item \"$dir\\SynologyDriveClient.msi_\""
-        ]
-    },
-    "checkver": {
-        "url": "https://archive.synology.com/download/Utility/SynologyDriveClient/",
-        "regex": "(?<patch>\\d+\\.\\d+\\.\\d+-\\d+)"
-    },
-    "autoupdate": {
-        "url": "https://global.synologydownload.com/download/Utility/SynologyDriveClient/$version/Windows/Installer/x86_64/Synology%20Drive%20Client-$version-x64.msi#/SynologyDriveClient.msi_",
-        "hash": {
-            "mode": "download"
-        }
+  "version": "3.5.0-16084",
+  "description": "Synology Drive Client - desktop utility for Synology Drive (official Synology client).",
+  "homepage": "https://www.synology.com/",
+  "license": "Proprietary",
+  "notes": [
+    "This manifest installs the Synology Drive Client MSI (64-bit).",
+    "Autoupdate/checkver use the Synology archive index to find latest versions."
+  ],
+  "architecture": {
+    "64bit": {
+      "url": "https://archive.synology.com/download/Utility/SynologyDriveClient/3.5.0-16084/Synology Drive Client-3.5.0-16084-x64.msi",
+      "hash": {
+        "mode": "download"
+      }
     }
+  },
+  "installer": {
+    "msi": [
+      "/qn",
+      "/norestart"
+    ]
+  },
+  "uninstall": {
+    "script": "if ($psversiontable.PSVersion.Major -lt 6) { $prog = Get-WmiObject -Class Win32_Product | Where-Object { $_.Name -like 'Synology Drive Client*' } } else { $prog = Get-CimInstance -ClassName Win32_Product | Where-Object { $_.Name -like 'Synology Drive Client*' } }; if ($prog) { Start-Process msiexec -Wait -ArgumentList '/x', $prog.IdentifyingNumber, '/qn', '/norestart' } else { Write-Output 'Synology Drive Client not found via Win32_Product; trying registry MSI Uninstall key'; $u = Get-ItemProperty 'HKLM:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\*','HKLM:\\SOFTWARE\\WOW6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\*' -ErrorAction SilentlyContinue | Where-Object { $_.DisplayName -like 'Synology Drive Client*' }; if ($u) { foreach ($i in $u) { if ($i.PSChildName) { Start-Process msiexec -Wait -ArgumentList '/x', $i.PSChildName, '/qn', '/norestart' } } } else { Write-Warning '卸载失败：未找到 Synology Drive Client 安装记录' } }"
+  },
+  "checkver": {
+    "url": "https://archive.synology.com/download/Utility/SynologyDriveClient/",
+    "regex": ">(3\\.\\d+\\.\\d+-\\d+)<",
+    "strategy": "page"
+  },
+  "autoupdate": {
+    "url": "https://archive.synology.com/download/Utility/SynologyDriveClient/$matchVersion/Synology Drive Client-$matchVersion-x64.msi",
+    "hash": {
+      "mode": "download"
+    }
+  }
 }
