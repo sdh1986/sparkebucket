@@ -1,21 +1,23 @@
 {
     "version": "3.5.2-16111",
-    "description": "Synology Drive Client 是 DSM 附加套件 Synology Drive Server 的桌面实用程序",
+    "description": "Sync files on demand and back up your computer with Synology Drive Client.",
     "homepage": "https://www.synology.com/en-us/dsm/feature/drive",
     "license": {
         "identifier": "Proprietary",
         "url": "https://www.synology.com/en-us/company/legal/terms_conditions"
     },
-    "url": "https://global.synologydownload.com/download/Utility/SynologyDriveClient/3.5.2-16111/Windows/Installer/x86_64/Synology%20Drive%20Client-3.5.2-16111-x64.msi#/SynologyDriveClient.msi_",
-    "hash": "ee3d45ba658412e81307f3de262deb5a8e2c399ddda0702aa5c6211a234a24d6",
+    "architecture": {
+        "64bit": {
+            "url": "https://global.synologydownload.com/download/Utility/SynologyDriveClient/3.5.2-16111/Windows/Installer/x86_64/Synology%20Drive%20Client-3.5.2-16111-x64.msi#/SynologyDriveClient.msi_",
+            "hash": "ee3d45ba658412e81307f3de262deb5a8e2c399ddda0702aa5c6211a234a24d6"
+        }
+    },
+    "extract_dir": "Synology",
     "installer": {
-        "script": "Invoke-ExternalCommand msiexec -ArgumentList @('/i', \"$dir\\SynologyDriveClient.msi_\", '/qr') -RunAs | Out-Null"
+        "script": "Start-Process 'msiexec' -ArgumentList @('/i', \"`\"$dir\\Synology Drive Client.msi`\"\", '/qn') -Wait"
     },
     "uninstaller": {
-        "script": [
-            "Invoke-ExternalCommand msiexec -ArgumentList @('/x', \"$dir\\SynologyDriveClient.msi_\", '/qn') -RunAs | Out-Null",
-            "Remove-Item \"$dir\\SynologyDriveClient.msi_\""
-        ]
+        "script": "Start-Process 'msiexec' -ArgumentList @('/x', \"`\"$dir\\Synology Drive Client.msi`\"\", '/qn') -Wait"
     },
     "checkver": {
         "url": "https://archive.synology.com/download/Utility/SynologyDriveClient",
