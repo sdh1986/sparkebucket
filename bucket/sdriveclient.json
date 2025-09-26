@@ -1,5 +1,5 @@
 {
-    "version": "3.4.0-15724",
+    "version": "3.5.2-16111",
     "description": "Sync files on demand and back up your computer with Synology Drive Client.",
     "homepage": "https://www.synology.com/en-us/dsm/feature/drive",
     "license": {
@@ -8,8 +8,8 @@
     },
     "architecture": {
         "64bit": {
-            "url": "https://archive.synology.com/download/Utility/SynologyDriveClient/3.4.0-15724/Windows/per-machine/SynologyDrive-3.4.0-15724-x64.msi",
-            "hash": "c018318d94944b55018659d54e42a04875ef21c609dc67b0704043b177e704a2"
+            "url": "https://archive.synology.com/download/Utility/SynologyDriveClient/3.5.2-16111/Windows/per-machine/SynologyDrive-3.5.2-16111-x64.msi",
+            "hash": "ee3d45ba658412e81307f3de262deb5a8e2c399ddda0702aa5c6211a234a24d6"
         }
     },
     "extract_dir": "Synology",
