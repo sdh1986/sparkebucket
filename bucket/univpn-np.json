@@ -6,7 +6,7 @@
         "identifier": "Proprietary",
         "url": "https://www.leagsoft.com/doc/article/103107.html"
     },
-    "url": "https://download.leagsoft.com/download/UniVPN/win/univpn-win-full-10781.18.1.0512-signed.zip/dl.7z",
+    "url": "https://download.leagsoft.com/download/UniVPN/win/univpn-win-full-10781.18.1.0512-signed.zip#/dl.7z",
     "hash": "388575f847c7dbe24b6bd654a654d2ea91ab46193b514a10f2f35d4d190d9d07",
     "installer": {
         "script": [
@@ -26,7 +26,7 @@
         "regex": "(?<patch>\\d+\\.\\d+\\.\\d+\\.\\d+)"
     },
     "autoupdate": {
-        "url": "https://download.leagsoft.com/download/UniVPN/win/univpn-win-full-$version-signed.zip#dl.7z",
+        "url": "https://download.leagsoft.com/download/UniVPN/win/univpn-win-full-$version-signed.zip#/dl.7z",
         "hash": {
             "mode": "download"
         }
