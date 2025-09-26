@@ -1,13 +1,13 @@
 {
-    "version": "3.2.0-13238",
+    "version": "3.5.2-16111",
     "description": "Synology Drive Client 是 DSM 附加套件 Synology Drive Server 的桌面实用程序",
     "homepage": "https://www.synology.com/en-us/dsm/feature/drive",
     "license": {
         "identifier": "Proprietary",
         "url": "https://www.synology.com/en-us/company/legal/terms_conditions"
     },
-    "url": "https://global.synologydownload.com/download/Utility/SynologyDriveClient/3.2.0-13238/Windows/Installer/x86_64/Synology%20Drive%20Client-3.2.0-13238-x64.msi#/SynologyDriveClient.msi_",
-    "hash": "0265C8BA838CBFF7C5677A399ED4BE0AE3F68050D2B9C415E19E8E4368206353",
+    "url": "https://global.synologydownload.com/download/Utility/SynologyDriveClient/3.5.2-16111/Windows/Installer/x86_64/Synology%20Drive%20Client-3.5.2-16111-x64.msi#/SynologyDriveClient.msi_",
+    "hash": "7cc58dca192e352bb1d473c0ef5a529898e251437dd66fc78e79d47a1280cf81",
     "installer": {
         "script": "Invoke-ExternalCommand msiexec -ArgumentList @('/i', \"$dir\\SynologyDriveClient.msi_\", '/qr') -RunAs | Out-Null"
     },
