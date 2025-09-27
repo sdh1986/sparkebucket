@@ -10,11 +10,13 @@
     "hash": "388575f847c7dbe24b6bd654a654d2ea91ab46193b514a10f2f35d4d190d9d07",
     "installer": {
         "script": [
+            "Expand-Archive -Path \"$dir\\$fname\" -DestinationPath \"$dir\" -Force",
             "Start-Process -Wait -FilePath (Get-ChildItem -Path \"$dir\" -Filter '*.exe' -Recurse | Select-Object -First 1).FullName -ArgumentList '/S' -Verb RunAs | Out-Null"
         ]
     },
     "uninstaller": {
         "script": [
+            "# Step 1: Uninstall the TAP driver first",
             "$tapAdapters = Get-PnpDevice -Class Net -FriendlyName 'TAP-Windows Adapter V9' -ErrorAction SilentlyContinue",
             "if ($tapAdapters) {",
             "    Write-Host 'Found TAP-Windows Adapter V9. Attempting to uninstall...'",
@@ -26,12 +28,28 @@
             "} else {",
             "    Write-Host 'TAP-Windows Adapter V9 not found.' -ForegroundColor Yellow",
             "}",
-            "$uninstaller = \"$env:ProgramFiles(x86)\\UniVPN\\uninst.exe\"",
-            "if (Test-Path $uninstaller) {",
-            "    Write-Host 'Running original UniVPN uninstaller...'",
-            "    Start-Process -Wait -FilePath $uninstaller -ArgumentList '/S' -Verb RunAs | Out-Null",
+            "",
+            "# Step 2: Find and run the application uninstaller via Windows Registry (more reliable)",
+            "$uninstallString = (Get-ItemProperty 'HKLM:\\SOFTWARE\\WOW6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\*' -ErrorAction SilentlyContinue | Where-Object { $_.DisplayName -like '*UniVPN*' } | Select-Object -ExpandProperty UninstallString -FirstOrDefault)",
+            "if ($uninstallString) {",
+            "    Write-Host \"Found uninstaller in registry: $uninstallString\"",
+            "    # Extract the executable path from the full uninstall string",
+            "    $uninstallerPath = ($uninstallString -split '(?<=\\.exe)(?:\"|\\s)')[0].Trim('\"')",
+            "    if (Test-Path $uninstallerPath) {",
+            "        Write-Host \"Executing silent uninstall via registry path...\"",
+            "        Start-Process -Wait -FilePath $uninstallerPath -ArgumentList '/S' -Verb RunAs | Out-Null",
+            "    } else {",
+            "        Write-Host \"Path from registry not found: '$uninstallerPath'. This can happen with MSI installers.\" -ForegroundColor Yellow",
+            "    }",
             "} else {",
-            "    Write-Host \"UniVPN uninstaller not found at: $uninstaller\" -ForegroundColor Yellow",
+            "    Write-Host \"Could not find UniVPN in registry. Falling back to default path.\" -ForegroundColor Yellow",
+            "    $uninstallerPath = \"$env:ProgramFiles(x86)\\UniVPN\\uninst.exe\"",
+            "    if (Test-Path $uninstallerPath) {",
+            "        Write-Host 'Running UniVPN uninstaller from default path...'",
+            "        Start-Process -Wait -FilePath $uninstallerPath -ArgumentList '/S' -Verb RunAs | Out-Null",
+            "    } else {",
+            "        Write-Host \"UniVPN uninstaller also not found at default path: '$uninstallerPath'\" -ForegroundColor Red",
+            "    }",
             "}"
         ]
     },
