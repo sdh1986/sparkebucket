@@ -26,12 +26,13 @@
             "} else {",
             "    Write-Host 'TAP-Windows Adapter V9 not found.' -ForegroundColor Yellow",
             "}",
-            "    $uninstallerPath = \"C:\\Program Files (x86)\\UniVPN\\uninst.exe\"",
-            "    if (Test-Path $uninstallerPath) {",
-            "        Write-Host 'Running UniVPN uninstaller from default path...'",
-            "        Start-Process -Wait -FilePath $uninstallerPath -ArgumentList '/S' -Verb RunAs | Out-Null",
-            "    } else {",
-            "        Write-Host \"UniVPN uninstaller also not found at default path: '$uninstallerPath'\" -ForegroundColor Red"
+            "$uninstallerPath = \"C:\\Program Files (x86)\\UniVPN\\uninst.exe\"",
+            "if (Test-Path $uninstallerPath) {",
+            "    Write-Host 'Running UniVPN uninstaller from default path...'",
+            "    Start-Process -Wait -FilePath $uninstallerPath -ArgumentList '/S' -Verb RunAs | Out-Null",
+            "} else {",
+            "    Write-Host \"UniVPN uninstaller also not found at default path: '$uninstallerPath'\" -ForegroundColor Red",
+            "}"
         ]
     },
     "checkver": {
