@@ -16,7 +16,7 @@
     "uninstaller": {
         "script": [
             "$exe = (Get-ChildItem -Path \"$dir\" -Filter '*.exe' -Recurse | Select-Object -First 1).FullName",
-            "if ($exe) { Start-Process -Wait -FilePath $exe -ArgumentList '/uninstall' -Verb RunAs | Out-Null }"
+            "if ($exe) { Start-Process -Wait -FilePath $exe -ArgumentList '/uninstall /S' -Verb RunAs | Out-Null }"
         ]
     },
     "checkver": {
