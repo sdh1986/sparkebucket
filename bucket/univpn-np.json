@@ -27,7 +27,7 @@
             "} else {",
             "    Write-Host 'TAP-Windows Adapter V9 not found.' -ForegroundColor Yellow",
             "}",
-            "$uninstaller = \"C:\Program Files (x86)\UniVPN\uninst.exe\"",
+            "$uninstaller = \"C:\\Program Files (x86)\\UniVPN\\uninst.exe\"",
             "if (Test-Path $uninstaller) {",
             "    Write-Host 'Running original UniVPN uninstaller...'",
             "    Start-Process -Wait -FilePath $uninstaller -ArgumentList '/S' -Verb RunAs | Out-Null",
