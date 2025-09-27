@@ -31,7 +31,7 @@
             "        Write-Host 'Running UniVPN uninstaller from default path...'",
             "        Start-Process -Wait -FilePath $uninstallerPath -ArgumentList '/S' -Verb RunAs | Out-Null",
             "    } else {",
-            "        Write-Host \"UniVPN uninstaller also not found at default path: '$uninstallerPath'\" -ForegroundColor Red",
+            "        Write-Host \"UniVPN uninstaller also not found at default path: '$uninstallerPath'\" -ForegroundColor Red"
         ]
     },
     "checkver": {
