@@ -42,7 +42,7 @@
             "    }",
             "} else {",
             "    Write-Host \"Could not find UniVPN in registry. Falling back to default path.\" -ForegroundColor Yellow",
-            "    $uninstallerPath = \"C:\\Program Files (x86)\\UniVP\\uninst.exe\"",
+            "    $uninstallerPath = \"C:\\Program Files (x86)\\UniVPN\\uninst.exe\"",
             "    if (Test-Path $uninstallerPath) {",
             "        Write-Host 'Running UniVPN uninstaller from default path...'",
             "        Start-Process -Wait -FilePath $uninstallerPath -ArgumentList '/S' -Verb RunAs | Out-Null",
