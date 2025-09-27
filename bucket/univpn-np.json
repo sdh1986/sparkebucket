@@ -10,13 +10,30 @@
     "hash": "388575f847c7dbe24b6bd654a654d2ea91ab46193b514a10f2f35d4d190d9d07",
     "installer": {
         "script": [
+            "Expand-Archive -Path \"$dir\\$fname\" -DestinationPath \"$dir\" -Force",
             "Start-Process -Wait -FilePath (Get-ChildItem -Path \"$dir\" -Filter '*.exe' -Recurse | Select-Object -First 1).FullName -ArgumentList '/S' -Verb RunAs | Out-Null"
         ]
     },
     "uninstaller": {
         "script": [
-            "$exe = (Get-ChildItem -Path \"$dir\" -Filter '*.exe' -Recurse | Select-Object -First 1).FullName",
-            "if ($exe) { Start-Process -Wait -FilePath $exe -ArgumentList '/uninstall' -Verb RunAs | Out-Null }"
+            "$tapAdapters = Get-PnpDevice -Class Net -FriendlyName 'TAP-Windows Adapter V9' -ErrorAction SilentlyContinue",
+            "if ($tapAdapters) {",
+            "    Write-Host 'Found TAP-Windows Adapter V9. Attempting to uninstall...'",
+            "    foreach ($adapter in $tapAdapters) {",
+            "        $instanceId = $adapter.InstanceID",
+            "        Write-Host \"Uninstalling device with Instance ID: $instanceId\"",
+            "        Start-Process -Wait -FilePath 'pnputil.exe' -ArgumentList \"/remove-device `\"$instanceId`\"\" -Verb RunAs | Out-Null",
+            "    }",
+            "} else {",
+            "    Write-Host 'TAP-Windows Adapter V9 not found.' -ForegroundColor Yellow",
+            "}",
+            "$uninstaller = \"$env:ProgramFiles(x86)\\UniVPN\\uninst.exe\"",
+            "if (Test-Path $uninstaller) {",
+            "    Write-Host 'Running original UniVPN uninstaller...'",
+            "    Start-Process -Wait -FilePath $uninstaller -ArgumentList '/S' -Verb RunAs | Out-Null",
+            "} else {",
+            "    Write-Host \"UniVPN uninstaller not found at: $uninstaller\" -ForegroundColor Yellow",
+            "}"
         ]
     },
     "checkver": {
