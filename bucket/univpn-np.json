@@ -10,7 +10,8 @@
     "hash": "388575f847c7dbe24b6bd654a654d2ea91ab46193b514a10f2f35d4d190d9d07",
     "installer": {
         "script": [
-            "Start-Process -Wait -FilePath $exe -ArgumentList '/S' -Verb RunAs | Out-Null"
+            "Expand-Archive -Path \"$dir\\$fname\" -DestinationPath \"$dir\" -Force",
+            "Start-Process -Wait -FilePath (Get-ChildItem -Path \"$dir\" -Filter '*.exe' -Recurse | Select-Object -First 1).FullName -ArgumentList '/S' -Verb RunAs | Out-Null"
         ]
     },
     "uninstaller": {
