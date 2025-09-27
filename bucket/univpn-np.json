@@ -17,8 +17,8 @@
     },
     "uninstaller": {
         "script": [
-            "$exe = (Get-ChildItem -Path \"$dir\" -Filter '*.exe' -Recurse | Select-Object -First 1).FullName",
-            "if ($exe) { Start-Process -Wait -FilePath $exe -ArgumentList '/uninstall' -Verb RunAs | Out-Null }"
+            "$exe = (Get-ChildItem -Path \"$env:ProgramFiles (x86)\\UniVPN\", \"$env:ProgramFiles\\UniVPN\" -ErrorAction SilentlyContinue | Select-Object -First 1).FullName + '\\uninstall.exe'",
+            "if (Test-Path $exe) { Start-Process -Wait -FilePath $exe -ArgumentList '/uninstall /S' -Verb RunAs | Out-Null }"
         ]
     },
     "checkver": {
