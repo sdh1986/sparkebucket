@@ -1,5 +1,5 @@
 {
-    "version": "3.5.2-16111",
+    "version": "4.0.0-17877",
     "description": "Synology Drive Client 是 DSM 附加套件 Synology Drive Server 的桌面实用程序",
     "homepage": "https://www.synology.com/en-us/dsm/feature/drive",
     "license": {
@@ -8,12 +8,12 @@
     },
     "architecture": {
         "64bit": {
-            "url": "https://global.synologydownload.com/download/Utility/SynologyDriveClient/3.5.2-16111/Windows/Installer/x86_64/Synology%20Drive%20Client-3.5.2-16111-x64.msi#/SynologyDriveClient.msi_",
-            "hash": "7cc58dca192e352bb1d473c0ef5a529898e251437dd66fc78e79d47a1280cf81"
+            "url": "https://global.synologydownload.com/download/Utility/SynologyDriveClient/4.0.0-17877/Windows/Installer/x86_64/Synology%20Drive%20Client-4.0.0-17877-x64.msi#/SynologyDriveClient.msi_",
+            "hash": "38112ca2b234c7f8e246968b58ae9e65ace2ec6889dbf956807bda1e83963788"
         },
         "32bit": {
-            "url": "https://global.synologydownload.com/download/Utility/SynologyDriveClient/3.5.2-16111/Windows/Installer/i686/Synology%20Drive%20Client-3.5.2-16111-x86.msi#/SynologyDriveClient.msi_",
-            "hash": "270740e466052b6ecd41cbdf7b5398d97efbe557e7cd8c41166103b900c3fe69"
+            "url": "https://global.synologydownload.com/download/Utility/SynologyDriveClient/4.0.0-17877/Windows/Installer/i686/Synology%20Drive%20Client-4.0.0-17877-x86.msi#/SynologyDriveClient.msi_",
+            "hash": "0b781fdceb5b90060b08f6bea8fa9a24da7e1cc55c96e92eca0d5ae0d3c34211"
         }
     },
     "installer": {
