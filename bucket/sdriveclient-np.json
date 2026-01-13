@@ -9,11 +9,11 @@
     "architecture": {
         "64bit": {
             "url": "https://cndl.synology.cn/download/Utility/SynologyDriveClient/4.0.1-17885/Windows/Installer/x86_64/Synology%20Drive%20Client-4.0.1-17885-x64.msi#/SynologyDriveClient.msi_",
-            "hash": "3b260867eea3a4aaf84ed20cdeadb1742ad2ff114ac69109c306bd7773d668d2"
+            "hash": "F447E5740404C3F5FDEAE29D356C8E68FE256F33F5089AE848C2F3BD49B2AAB4"
         },
         "32bit": {
             "url": "https://cndl.synology.cn/download/Utility/SynologyDriveClient/4.0.1-17885/Windows/Installer/i686/Synology%20Drive%20Client-4.0.1-17885-x86.msi#/SynologyDriveClient.msi_",
-            "hash": "f76e235530e55fe48baa8f75f1fdee7c7cccd91b6623c936066640080893f0b3"
+            "hash": "9E3EB4C5D75D1732A078321FD61E517386FBBCD26D57A81CBFB6F3E6FE6387C0"
         }
     },
     "installer": {
