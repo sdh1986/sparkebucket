@@ -1,10 +1,10 @@
 {
-    "version": "3.10.12.31494",
+    "version": "3.11.25.33242",
     "description": "小鱼易连会议软件",
     "homepage": "https://www.xylink.com",
     "license": "Unknown",
-    "url": "https://cdn.xylink.com/as/150130/new/XYLinkClient-3.10.12.31494.exe#/XYLink.exe",
-    "hash": "f46717d8ef1887b7c7a5566bc2dc19a2917931bf186eb32a460893a238e0883c",
+    "url": "https://cdn.xylink.com/as/150130/new/XYLinkClient-3.11.25.33242.exe#/XYLink.exe",
+    "hash": "3711bc4e563bdc6923cbfe206fd808b894f8b8b5ba70dc3bd511eb478aa33982",
     "installer": {
         "script": [
             "Start-Process -Wait -FilePath `\"$dir\\XYLink.exe`\" -ArgumentList \"/VERYSILENT /SUPPRESSMSGBOXES /NORESTART\" -Verb RunAs",
