@@ -7,11 +7,10 @@
     "hash": "D0292FA3E4572FE199875B9D1DD615A859461A828EA7ED3126608F3CB225265E",
     "installer": {
         "script": [
-            "Write-Host 'Starting WPS installer...' -ForegroundColor Cyan",
-            "Write-Host 'Please note: A UAC prompt may flash on the taskbar. Please click \"Yes\" to allow the installation!' -ForegroundColor Yellow",
-            "Start-Process -Wait -FilePath \"$dir\\wps-setup.exe\" -ArgumentList '/S' -WorkingDirectory \"$dir\" -Verb RunAs | Out-Null",
-            "Write-Host 'WPS installation process executed.' -ForegroundColor Cyan",
-            "Write-Host 'If the desktop shortcut does not appear, it might have been silently installed to %LOCALAPPDATA%\\Kingsoft\\WPS Office.' -ForegroundColor Yellow"
+            "Write-Host 'Starting WPS GUI installer...' -ForegroundColor Cyan",
+            "Write-Host 'Please follow the on-screen graphical instructions to complete the installation.' -ForegroundColor Yellow",
+            "Start-Process -Wait -FilePath \"$dir\\wps-setup.exe\" -WorkingDirectory \"$dir\" -Verb RunAs | Out-Null",
+            "Write-Host 'WPS installation process finished.' -ForegroundColor Cyan"
         ]
     },
     "uninstaller": {
@@ -24,7 +23,8 @@
             ") | Select-Object -First 1",
             "if ($uninst) {",
             "    Write-Host \"Uninstaller found: $($uninst.FullName)\"",
-            "    Start-Process -Wait -FilePath $uninst.FullName -ArgumentList '/S' -Verb RunAs | Out-Null",
+            "    Write-Host 'Please follow the uninstaller GUI to remove WPS.' -ForegroundColor Yellow",
+            "    Start-Process -Wait -FilePath $uninst.FullName -Verb RunAs | Out-Null",
             "} else {",
             "    Write-Host 'WPS uninstaller not found in default paths.' -ForegroundColor Red",
             "}"
