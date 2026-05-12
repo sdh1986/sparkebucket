@@ -4,7 +4,7 @@
     "homepage": "https://woa.wps.cn",
     "license": "Proprietary",
     "url": "https://koa-img-ks3-cn.wpscdn.cn/release%2F095d396182f3490238594df19f53df06?response-content-disposition=attachment%3Bfilename%2A%3Dutf-8%27%27xiezuo%2520Setup%25205.36.0-sinopharm-5.36.0.exe&KSSAccessKeyId=AKLTLBvJboGYReaouMefvp63&Expires=1778600196&Signature=rnWmYOuqOdGdtaoQ7PTeGmZWLbw%3D&t=1778599596&k=4f33662b26581d72d4579ff5ec172f5a#/xiezuo-setup.exe",
-    "hash": "1111111111111111111111111111111111111111111111111111111111111111",
+    "hash": "DFE6AD731F5A2CE0A0E048FE469CE4CD0DE76C8436333C8B32D8090C1895424D",
     "installer": {
         "script": [
             "Write-Host 'Closing running Xiezuo processes to prevent installation hang...' -ForegroundColor Cyan",
