@@ -21,10 +21,6 @@
     },
     "uninstaller": {
         "script": [
-            "Write-Host 'Closing running WPS processes to ensure clean uninstallation...' -ForegroundColor Cyan",
-            "$wpsProcs = @('wps', 'wpp', 'et', 'wpscloudsvr', 'wpscloudsrv', 'wpscenter', 'ksomisc', 'ksolaunch', 'kwpsoffice')",
-            "foreach ($p in $wpsProcs) { Get-Process -Name $p -ErrorAction SilentlyContinue | Stop-Process -Force -ErrorAction SilentlyContinue }",
-            "",
             "Write-Host 'Searching for WPS uninstaller...' -ForegroundColor Cyan",
             "$uninst = $null",
             "",
@@ -56,8 +52,7 @@
             "    Start-Process -FilePath $uninst -Verb RunAs",
             "    Start-Sleep -Seconds 3",
             "    while (Get-Process -Name $uninstName -ErrorAction SilentlyContinue) { Start-Sleep -Seconds 2 }",
-            "    Write-Host 'Uninstall GUI closed. Cleaning up leftover cloud services...' -ForegroundColor Cyan",
-            "    foreach ($p in $wpsProcs) { Get-Process -Name $p -ErrorAction SilentlyContinue | Stop-Process -Force -ErrorAction SilentlyContinue }",
+            "    Write-Host 'Uninstall GUI closed. Process finished.' -ForegroundColor Green",
             "} else {",
             "    Write-Host 'WPS uninstaller not found.' -ForegroundColor Red",
             "}"
