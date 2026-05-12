@@ -37,7 +37,7 @@
     },
     "checkver": {
         "url": "https://www.leagsoft.com/doc/article/103107.html",
-        "regex": "(?<patch>\\d+\\.\\d+\\.\\d+\\.\\d+)"
+        "regex": "univpn-win-full-([\\d.]+)-signed\\.zip"
     },
     "autoupdate": {
         "url": "https://download.leagsoft.com/download/UniVPN/win/univpn-win-full-$version-signed.zip",
