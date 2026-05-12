@@ -7,15 +7,27 @@
     "hash": "D0292FA3E4572FE199875B9D1DD615A859461A828EA7ED3126608F3CB225265E",
     "installer": {
         "script": [
-            "Write-Host 'Installing WPS...' -ForegroundColor Cyan",
-            "Start-Process -Wait -FilePath \"$dir\\wps-setup.exe\" -ArgumentList '/S' -Verb RunAs | Out-Null"
+            "Write-Host '正在启动 WPS 安装程序...' -ForegroundColor Cyan",
+            "Write-Host '请注意：任务栏可能会闪烁 UAC 提权提示，请及时点击“是”允许安装！' -ForegroundColor Yellow",
+            "Start-Process -Wait -FilePath \"$dir\\wps-setup.exe\" -ArgumentList '/S' -WorkingDirectory \"$dir\" -Verb RunAs | Out-Null",
+            "Write-Host 'WPS 安装流程已执行。' -ForegroundColor Cyan",
+            "Write-Host '如果桌面未出现快捷方式，它可能已静默安装至 %LOCALAPPDATA%\\Kingsoft\\WPS Office 中。' -ForegroundColor Yellow"
         ]
     },
     "uninstaller": {
         "script": [
-            "Write-Host 'Uninstalling WPS...' -ForegroundColor Cyan",
-            "$uninst = Get-ChildItem -Path \"$env:ProgramFiles\\WPS Office\\*\\utility\\uninst.exe\" -ErrorAction SilentlyContinue | Select-Object -First 1",
-            "if ($uninst) { Start-Process -Wait -FilePath $uninst.FullName -ArgumentList '/S' -Verb RunAs | Out-Null }"
+            "Write-Host '正在查找并卸载 WPS...' -ForegroundColor Cyan",
+            "$uninst = @(",
+            "    Get-ChildItem -Path \"$env:ProgramFiles\\WPS Office\\*\\utility\\uninst.exe\" -ErrorAction SilentlyContinue",
+            "    Get-ChildItem -Path \"${env:ProgramFiles(x86)}\\WPS Office\\*\\utility\\uninst.exe\" -ErrorAction SilentlyContinue",
+            "    Get-ChildItem -Path \"$env:LOCALAPPDATA\\Kingsoft\\WPS Office\\*\\utility\\uninst.exe\" -ErrorAction SilentlyContinue",
+            ") | Select-Object -First 1",
+            "if ($uninst) {",
+            "    Write-Host \"找到卸载程序: $($uninst.FullName)\"",
+            "    Start-Process -Wait -FilePath $uninst.FullName -ArgumentList '/S' -Verb RunAs | Out-Null",
+            "} else {",
+            "    Write-Host '未在默认路径中找到 WPS 卸载程序。' -ForegroundColor Red",
+            "}"
         ]
     },
     "checkver": {
