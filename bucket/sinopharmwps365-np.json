@@ -1,0 +1,32 @@
+{
+    "version": "12.1.0.20305",
+    "description": "sinopharm-personal-wps365",
+    "homepage": "https://www.wps.cn",
+    "license": "Proprietary",
+    "url": "https://wpsplus-prod.ks3-cn-beijing.ksyun.com/wps_windows_custom_pack_1776909618866072781/sinopharm-sn-setup_CN_2052_12.1.0.20305_Personal_WPS365_international51.854.exe?Expires=1792461810&AWSAccessKeyId=AKLTFlK09C54QAiYpBcdt9Sn&Signature=23JcIfJf7ZpqODjvUkIHQFQ6GbA%3D#/wps-setup.exe",
+    "hash": "D0292FA3E4572FE199875B9D1DD615A859461A828EA7ED3126608F3CB225265E",
+    "installer": {
+        "script": [
+            "Write-Host 'Installing WPS...' -ForegroundColor Cyan",
+            "Start-Process -Wait -FilePath \"$dir\\wps-setup.exe\" -ArgumentList '/S' -Verb RunAs | Out-Null"
+        ]
+    },
+    "uninstaller": {
+        "script": [
+            "Write-Host 'Uninstalling WPS...' -ForegroundColor Cyan",
+            "$uninst = Get-ChildItem -Path \"$env:ProgramFiles\\WPS Office\\*\\utility\\uninst.exe\" -ErrorAction SilentlyContinue | Select-Object -First 1",
+            "if ($uninst) { Start-Process -Wait -FilePath $uninst.FullName -ArgumentList '/S' -Verb RunAs | Out-Null }"
+        ]
+    },
+    "checkver": {
+        "url": "https://365.kdocs.cn/3rd/plussvr/cmgr/v1/companies/exclusive-pages/GLu5HVcFPyvU7jNj/products?pageId=GLu5HVcFPyvU7jNj&app_name=WPSOffice&system=Windows",
+        "jsonpath": "$.package_url",
+        "regex": "(?<url>https://.*?(?<version>\\d+\\.\\d+\\.\\d+\\.\\d+).*)"
+    },
+    "autoupdate": {
+        "url": "$matchUrl#/wps-setup.exe",
+        "hash": {
+            "mode": "download"
+        }
+    }
+}
