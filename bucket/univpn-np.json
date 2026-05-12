@@ -1,17 +1,15 @@
 {
-    "version": "10781.18.1.0512",
+    "version": "10781.19.0.0728",
     "description": "UniVPN Client 远程接入终端方案",
     "homepage": "https://www.leagsoft.com/",
     "license": {
         "identifier": "Proprietary",
         "url": "https://www.leagsoft.com/doc/article/103107.html"
     },
-    "url": "https://download.leagsoft.com/download/UniVPN/win/univpn-win-full-10781.18.1.0512-signed.zip",
-    "hash": "388575f847c7dbe24b6bd654a654d2ea91ab46193b514a10f2f35d4d190d9d07",
+    "url": "https://download.leagsoft.com/download/UniVPN/win/univpn-win-full-10781.19.0.0728-signed.zip",
+    "hash": "a1ca6fdced8010adc39f8de9f35ee2a206275823328faa7c654ced12e85ad81f",
     "installer": {
-        "script": [
-            "Start-Process -Wait -FilePath (Get-ChildItem -Path \"$dir\" -Filter '*.exe' -Recurse | Select-Object -First 1).FullName -ArgumentList '/S' -Verb RunAs | Out-Null"
-        ]
+        "script": "Start-Process -Wait -FilePath (Get-ChildItem -Path \"$dir\" -Filter '*.exe' -Recurse | Select-Object -First 1).FullName -ArgumentList '/S' -Verb RunAs | Out-Null"
     },
     "uninstaller": {
         "script": [
