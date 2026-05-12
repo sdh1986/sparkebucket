@@ -1,1 +1,72 @@
-
+{
+    "version": "5.36.0",
+    "description": "Sinopharm WPS Collaboration (国药协作 WOA/xiezuo)",
+    "homepage": "https://woa.wps.cn",
+    "license": "Proprietary",
+    "url": "https://koa-img-ks3-cn.wpscdn.cn/release%2F095d396182f3490238594df19f53df06?response-content-disposition=attachment%3Bfilename%2A%3Dutf-8%27%27xiezuo%2520Setup%25205.36.0-sinopharm-5.36.0.exe&KSSAccessKeyId=AKLTLBvJboGYReaouMefvp63&Expires=1778600196&Signature=rnWmYOuqOdGdtaoQ7PTeGmZWLbw%3D&t=1778599596&k=4f33662b26581d72d4579ff5ec172f5a#/xiezuo-setup.exe",
+    "hash": "1111111111111111111111111111111111111111111111111111111111111111",
+    "installer": {
+        "script": [
+            "Write-Host 'Closing running Xiezuo processes to prevent installation hang...' -ForegroundColor Cyan",
+            "Get-Process -Name 'xiezuo*', 'woa*' -ErrorAction SilentlyContinue | Stop-Process -Force -ErrorAction SilentlyContinue",
+            "Write-Host 'Starting WPS Xiezuo GUI installer...' -ForegroundColor Cyan",
+            "Write-Host 'Please follow the on-screen graphical instructions to complete the installation.' -ForegroundColor Yellow",
+            "Start-Process -FilePath \"$dir\\xiezuo-setup.exe\" -WorkingDirectory \"$dir\" -Verb RunAs",
+            "Start-Sleep -Seconds 5",
+            "$setupProcName = [System.IO.Path]::GetFileNameWithoutExtension(\"$dir\\xiezuo-setup.exe\")",
+            "while (Get-Process -Name $setupProcName, 'setup' -ErrorAction SilentlyContinue) { Start-Sleep -Seconds 2 }",
+            "Write-Host 'Installation GUI closed. Cleaning up background services...' -ForegroundColor Cyan",
+            "Get-Process -Name 'xiezuo*', 'woa*' -ErrorAction SilentlyContinue | Stop-Process -Force -ErrorAction SilentlyContinue",
+            "Write-Host 'WPS Xiezuo installation process finished.' -ForegroundColor Green"
+        ]
+    },
+    "uninstaller": {
+        "script": [
+            "Write-Host 'Searching for Xiezuo uninstaller...' -ForegroundColor Cyan",
+            "$uninst = $null",
+            "",
+            "$regPaths = @(",
+            "    'HKLM:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\*',",
+            "    'HKLM:\\SOFTWARE\\WOW6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\*',",
+            "    'HKCU:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\*'",
+            ")",
+            "$woaReg = Get-ItemProperty $regPaths -ErrorAction SilentlyContinue | Where-Object { $_.DisplayName -match '协作|xiezuo' -and $_.UninstallString } | Select-Object -First 1",
+            "if ($woaReg) {",
+            "    if ($woaReg.UninstallString -match '\\\"(.*?\\.exe)\\\"') { $uninst = $matches[1] }",
+            "    elseif ($woaReg.UninstallString -match '(.*?\\.exe)') { $uninst = $matches[1] }",
+            "}",
+            "",
+            "if (-not $uninst -or -not (Test-Path $uninst)) {",
+            "    $baseDirs = @(\"$env:LOCALAPPDATA\\xiezuo\", \"$env:ProgramFiles\\xiezuo\", \"${env:ProgramFiles(x86)}\\xiezuo\")",
+            "    foreach ($dir in $baseDirs) {",
+            "        if (Test-Path $dir) {",
+            "            $found = Get-ChildItem -Path $dir -Filter 'uninst*.exe' -Recurse -ErrorAction SilentlyContinue | Select-Object -First 1",
+            "            if ($found) { $uninst = $found.FullName; break }",
+            "        }",
+            "    }",
+            "}",
+            "",
+            "if ($uninst -and (Test-Path $uninst)) {",
+            "    Write-Host \"Uninstaller found: $uninst\" -ForegroundColor Green",
+            "    Write-Host 'Please follow the uninstaller GUI to remove Xiezuo.' -ForegroundColor Yellow",
+            "    $uninstName = [System.IO.Path]::GetFileNameWithoutExtension($uninst)",
+            "    Start-Process -FilePath $uninst -Verb RunAs",
+            "    Start-Sleep -Seconds 3",
+            "    while (Get-Process -Name $uninstName -ErrorAction SilentlyContinue) { Start-Sleep -Seconds 2 }",
+            "    Write-Host 'Uninstall GUI closed. Process finished.' -ForegroundColor Green",
+            "} else {",
+            "    Write-Host 'Xiezuo uninstaller not found.' -ForegroundColor Red",
+            "}"
+        ]
+    },
+    "checkver": {
+        "url": "https://woa.wps.cn/bin/version?platform=win&channel=sinopharm",
+        "regex": "\"app_name\"\\s*:\\s*\".*?(?<version>\\d+\\.\\d+\\.\\d+).*?\""
+    },
+    "autoupdate": {
+        "url": "https://woa.wps.cn/publish/bin/download?channel=sinopharm&platform=win#/xiezuo-setup.exe",
+        "hash": {
+            "mode": "download"
+        }
+    }
+}
