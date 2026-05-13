@@ -4,7 +4,7 @@
     "homepage": "https://woa.wps.cn",
     "license": "Proprietary",
     "url": "https://woa.wps.cn/favicon.ico#/dummy.ico",
-    "hash": "DFE6AD731F5A2CE0A0E048FE469CE4CD0DE76C8436333C8B32D8090C1895424",
+    "hash": "DFE6AD731F5A2CE0A0E048FE469CE4CD0DE76C8436333C8B32D8090C1895424D",
     "installer": {
         "script": [
             "$ProgressPreference = 'SilentlyContinue'",
