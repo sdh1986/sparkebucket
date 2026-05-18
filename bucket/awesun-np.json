@@ -7,7 +7,7 @@
     },
     "architecture": {
         "64bit": {
-            "url": "https://raw.githubusercontent.com/ScoopInstaller/Scoop/master/LICENSE#/dummy.txt",
+            "url": "https://fastly.jsdelivr.net/gh/ScoopInstaller/Scoop@master/LICENSE#/dummy.txt",
             "hash": "5689710d0879100cc133b38466185bb81dcc39327e57cde8621cbaf98285517d",
             "pre_install": [
                 "Write-Host '==> 拦截向日葵源站 WAF (防爬虫) 保护... 正在模拟浏览器下载核心资产' -ForegroundColor Cyan",
@@ -31,7 +31,7 @@
             ]
         },
         "32bit": {
-            "url": "https://raw.githubusercontent.com/ScoopInstaller/Scoop/master/LICENSE#/dummy.txt",
+            "url": "https://fastly.jsdelivr.net/gh/ScoopInstaller/Scoop@master/LICENSE#/dummy.txt",
             "hash": "5689710d0879100cc133b38466185bb81dcc39327e57cde8621cbaf98285517d",
             "pre_install": [
                 "Write-Host '==> 拦截向日葵源站 WAF (防爬虫) 保护... 正在模拟浏览器下载核心资产' -ForegroundColor Cyan",
@@ -55,7 +55,7 @@
             ]
         },
         "arm64": {
-            "url": "https://raw.githubusercontent.com/ScoopInstaller/Scoop/master/LICENSE#/dummy.txt",
+            "url": "https://fastly.jsdelivr.net/gh/ScoopInstaller/Scoop@master/LICENSE#/dummy.txt",
             "hash": "5689710d0879100cc133b38466185bb81dcc39327e57cde8621cbaf98285517d",
             "pre_install": [
                 "Write-Host '==> 拦截向日葵源站 WAF (防爬虫) 保护... 正在模拟浏览器下载核心资产' -ForegroundColor Cyan",
