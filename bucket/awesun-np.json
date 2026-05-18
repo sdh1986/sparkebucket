@@ -7,7 +7,7 @@
     },
     "architecture": {
         "64bit": {
-            "url": "https://dl.oray.com/sl/windows/AweSun_x64_16.3.0.29530.exe",
+            "url": "https://down.oray.com/sunlogin/windows/SunloginClient_16.3.0.29530_x64.exe#/AweSun_x64_16.3.0.29530.exe",
             "hash": "69843953BD6C83C3A73E69F9D75EC13EA563A9322251425A3FD77D28FD399BD5",
             "shortcuts": [
                 [
@@ -17,7 +17,7 @@
             ]
         },
         "32bit": {
-            "url": "https://dl.oray.com/sl/windows/AweSun_16.3.0.29530.exe",
+            "url": "https://down.oray.com/sunlogin/windows/SunloginClient_16.3.0.29530.exe#/AweSun_16.3.0.29530.exe",
             "hash": "882D22AE1C21F170E36B71FB9F742B39726D22C4444EB8FCE52C7B908F16F142",
             "shortcuts": [
                 [
@@ -27,7 +27,7 @@
             ]
         },
         "arm64": {
-            "url": "https://dl.oray.com/sl/windows/AweSun_arm64_16.3.0.29530.exe",
+            "url": "https://down.oray.com/sunlogin/windows/SunloginClient_16.3.0.29530_arm64.exe#/AweSun_arm64_16.3.0.29530.exe",
             "hash": "D89AE5FC5921159A1ACE7106F2D2D14EEAF4E45438EA0A60B35AAA0F4B2D6E4D",
             "shortcuts": [
                 [
@@ -51,43 +51,25 @@
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://dl.oray.com/sl/windows/AweSun_x64_$version.exe",
+                "url": "https://down.oray.com/sunlogin/windows/SunloginClient_$version_x64.exe#/AweSun_x64_$version.exe",
                 "hash": {
                     "url": "https://client-api.oray.com/softwares/SUNLOGIN_X_WINDOWS?x64=1",
                     "jp": "$.md5"
-                },
-                "shortcuts": [
-                    [
-                        "AweSun_x64_$version.exe",
-                        "Sunlogin"
-                    ]
-                ]
+                }
             },
             "32bit": {
-                "url": "https://dl.oray.com/sl/windows/AweSun_$version.exe",
+                "url": "https://down.oray.com/sunlogin/windows/SunloginClient_$version.exe#/AweSun_$version.exe",
                 "hash": {
                     "url": "https://client-api.oray.com/softwares/SUNLOGIN_X_WINDOWS?x64=0",
                     "jp": "$.md5"
-                },
-                "shortcuts": [
-                    [
-                        "AweSun_$version.exe",
-                        "Sunlogin"
-                    ]
-                ]
+                }
             },
             "arm64": {
-                "url": "https://dl.oray.com/sl/windows/AweSun_arm64_$version.exe",
+                "url": "https://down.oray.com/sunlogin/windows/SunloginClient_$version_arm64.exe#/AweSun_arm64_$version.exe",
                 "hash": {
                     "url": "https://client-api.oray.com/softwares/SUNLOGIN_X_WINDOWS_ARM",
                     "jp": "$.md5"
-                },
-                "shortcuts": [
-                    [
-                        "AweSun_arm64_$version.exe",
-                        "Sunlogin"
-                    ]
-                ]
+                }
             }
         }
     }
