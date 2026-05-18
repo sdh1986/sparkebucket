@@ -8,7 +8,7 @@
     "architecture": {
         "64bit": {
             "url": "https://down.oray.com/sunlogin/windows/AweSun_x64_16.3.0.29530.exe",
-            "hash": "md5:00000000000000000000000000000000",
+            "hash": "69843953BD6C83C3A73E69F9D75EC13EA563A9322251425A3FD77D28FD399BD5",
             "shortcuts": [
                 [
                     "AweSun_x64_16.3.0.29530.exe",
@@ -18,7 +18,7 @@
         },
         "32bit": {
             "url": "https://down.oray.com/sunlogin/windows/AweSun_16.3.0.29530.exe",
-            "hash": "md5:00000000000000000000000000000000",
+            "hash": "882D22AE1C21F170E36B71FB9F742B39726D22C4444EB8FCE52C7B908F16F142",
             "shortcuts": [
                 [
                     "AweSun_16.3.0.29530.exe",
@@ -28,7 +28,7 @@
         },
         "arm64": {
             "url": "https://down.oray.com/sunlogin/windows/AweSun_arm_16.3.0.29530.exe",
-            "hash": "md5:00000000000000000000000000000000",
+            "hash": "D89AE5FC5921159A1ACE7106F2D2D14EEAF4E45438EA0A60B35AAA0F4B2D6E4D",
             "shortcuts": [
                 [
                     "AweSun_arm_16.3.0.29530.exe",
