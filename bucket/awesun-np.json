@@ -7,7 +7,7 @@
     },
     "architecture": {
         "64bit": {
-            "url": "https://dw.oray.com/sl/windows/AweSun_x64_16.3.0.29530.exe",
+            "url": "https://dl.oray.com/sl/windows/AweSun_x64_16.3.0.29530.exe",
             "hash": "69843953BD6C83C3A73E69F9D75EC13EA563A9322251425A3FD77D28FD399BD5",
             "shortcuts": [
                 [
@@ -27,7 +27,7 @@
             ]
         },
         "arm64": {
-            "url": "https://d-cdn.oray.com/sl/windows/AweSun_arm64_16.3.0.29530.exe",
+            "url": "https://dw.oray.com/sl/windows/AweSun_arm64_16.3.0.29530.exe",
             "hash": "D89AE5FC5921159A1ACE7106F2D2D14EEAF4E45438EA0A60B35AAA0F4B2D6E4D",
             "shortcuts": [
                 [
