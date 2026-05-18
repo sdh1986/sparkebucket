@@ -8,7 +8,7 @@
     "architecture": {
         "64bit": {
             "url": "https://fastly.jsdelivr.net/gh/ScoopInstaller/Scoop@master/LICENSE#/dummy.txt",
-            "hash": "5689710d0879100cc133b38466185bb81dcc39327e57cde8621cbaf98285517d",
+            "hash": "92c2b8f7e3b344a307889ff5f55dc3d7fa048f846845549df0e33e44e5939476",
             "pre_install": [
                 "Write-Host '==> 拦截向日葵源站 WAF (防爬虫) 保护... 正在模拟浏览器下载核心资产' -ForegroundColor Cyan",
                 "$ua = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'",
@@ -32,7 +32,7 @@
         },
         "32bit": {
             "url": "https://fastly.jsdelivr.net/gh/ScoopInstaller/Scoop@master/LICENSE#/dummy.txt",
-            "hash": "5689710d0879100cc133b38466185bb81dcc39327e57cde8621cbaf98285517d",
+            "hash": "92c2b8f7e3b344a307889ff5f55dc3d7fa048f846845549df0e33e44e5939476",
             "pre_install": [
                 "Write-Host '==> 拦截向日葵源站 WAF (防爬虫) 保护... 正在模拟浏览器下载核心资产' -ForegroundColor Cyan",
                 "$ua = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'",
@@ -56,7 +56,7 @@
         },
         "arm64": {
             "url": "https://fastly.jsdelivr.net/gh/ScoopInstaller/Scoop@master/LICENSE#/dummy.txt",
-            "hash": "5689710d0879100cc133b38466185bb81dcc39327e57cde8621cbaf98285517d",
+            "hash": "92c2b8f7e3b344a307889ff5f55dc3d7fa048f846845549df0e33e44e5939476",
             "pre_install": [
                 "Write-Host '==> 拦截向日葵源站 WAF (防爬虫) 保护... 正在模拟浏览器下载核心资产' -ForegroundColor Cyan",
                 "$ua = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'",
