@@ -92,8 +92,8 @@
         "script": [
             "$exe = Get-ChildItem \"$dir\\SunloginClient_*.exe\" | Select-Object -First 1",
             "if ($exe) {",
-            "    Write-Host '==> 正在启动向日葵安装程序，请在弹出的界面中点击安装...' -ForegroundColor Cyan",
-            "    Start-Process $exe.FullName -Wait",
+            "    Write-Host '==> 正在后台静默安装向日葵远程控制...' -ForegroundColor Cyan",
+            "    Start-Process $exe.FullName -ArgumentList '/S' -Wait",
             "}",
             "$path = 'HKCU:\\Software\\Oray\\SunLogin\\SunloginClient'",
             "New-Item $path -ErrorAction SilentlyContinue -Force | Out-Null",
@@ -103,5 +103,18 @@
     "checkver": {
         "url": "https://client-api.oray.com/softwares/SUNLOGIN_X_WINDOWS?x64=1",
         "jp": "$.version"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://fastly.jsdelivr.net/gh/ScoopInstaller/Scoop@master/LICENSE#/dummy.txt"
+            },
+            "32bit": {
+                "url": "https://fastly.jsdelivr.net/gh/ScoopInstaller/Scoop@master/LICENSE#/dummy.txt"
+            },
+            "arm64": {
+                "url": "https://fastly.jsdelivr.net/gh/ScoopInstaller/Scoop@master/LICENSE#/dummy.txt"
+            }
+        }
     }
 }
