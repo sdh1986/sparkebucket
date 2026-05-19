@@ -10,10 +10,9 @@
             "url": "https://fastly.jsdelivr.net/gh/ScoopInstaller/Scoop@master/LICENSE#/dummy.txt",
             "hash": "92c2b8f7e3b344a307889ff5f55dc3d7fa048f846845549df0e33e44e5939476",
             "pre_install": [
-                "Write-Host '==> 拦截向日葵源站 WAF (防爬虫) 保护... 正在请求底层静态 CDN' -ForegroundColor Cyan",
+                # 拦截向日葵源站 WAF (防爬虫) 保护... 请求底层静态 CDN
                 "$dl_url = \"https://dl.oray.com/sl/windows/AweSun_x64_${version}.exe\"",
                 "$exe_path = \"$dir\\SunloginClient_x64.exe\"",
-                "Write-Host \"    正在下载: $dl_url\" -ForegroundColor Yellow",
                 "$headers = @{",
                 "    'User-Agent' = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'",
                 "    'Referer' = 'https://sunlogin.oray.com/'",
@@ -21,26 +20,25 @@
                 "try {",
                 "    Invoke-WebRequest -Uri $dl_url -OutFile $exe_path -Headers $headers -UseBasicParsing -ErrorAction Stop",
                 "} catch {",
-                "    Write-Host \"==> 首次下载尝试失败 ($($_.Exception.Message))，切换至 curl.exe 备用引擎...\" -ForegroundColor Yellow",
+                # 首次下载尝试失败，切换至curl.exe备用引擎...
                 "    & curl.exe -L -A 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36' -e 'https://sunlogin.oray.com/' -o \"$exe_path\" \"$dl_url\"",
                 "}",
                 "$bytes = Get-Content -Path $exe_path -Encoding Byte -TotalCount 2 -ErrorAction SilentlyContinue",
                 "if (-not $bytes -or $bytes[0] -ne 0x4D -or $bytes[1] -ne 0x5A) {",
-                "    Write-Host '==> 错误：下载失败！服务器返回了网页(可能仍被拦截)，而不是可执行文件。' -ForegroundColor Red",
+                # 错误：下载失败！服务器返回了网页(可能仍被拦截)，而不是可执行文件。
                 "    if (Test-Path $exe_path) { Remove-Item $exe_path -Force }",
                 "    exit 1",
                 "}",
-                "Write-Host '==> 可执行文件头 (MZ) 校验通过！' -ForegroundColor Green"
+                # 可执行文件头 (MZ) 校验通过！
             ]
         },
         "32bit": {
             "url": "https://fastly.jsdelivr.net/gh/ScoopInstaller/Scoop@master/LICENSE#/dummy.txt",
             "hash": "92c2b8f7e3b344a307889ff5f55dc3d7fa048f846845549df0e33e44e5939476",
             "pre_install": [
-                "Write-Host '==> 拦截向日葵源站 WAF (防爬虫) 保护... 正在请求底层静态 CDN' -ForegroundColor Cyan",
+                # 拦截向日葵源站 WAF (防爬虫) 保护... 请求底层静态 CDN
                 "$dl_url = \"https://dl.oray.com/sl/windows/AweSun_${version}.exe\"",
                 "$exe_path = \"$dir\\SunloginClient_x86.exe\"",
-                "Write-Host \"    正在下载: $dl_url\" -ForegroundColor Yellow",
                 "$headers = @{",
                 "    'User-Agent' = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'",
                 "    'Referer' = 'https://sunlogin.oray.com/'",
@@ -48,26 +46,25 @@
                 "try {",
                 "    Invoke-WebRequest -Uri $dl_url -OutFile $exe_path -Headers $headers -UseBasicParsing -ErrorAction Stop",
                 "} catch {",
-                "    Write-Host \"==> 首次下载尝试失败 ($($_.Exception.Message))，切换至 curl.exe 备用引擎...\" -ForegroundColor Yellow",
+                # 首次下载尝试失败，切换至 curl.exe 备用引擎
                 "    & curl.exe -L -A 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36' -e 'https://sunlogin.oray.com/' -o \"$exe_path\" \"$dl_url\"",
                 "}",
                 "$bytes = Get-Content -Path $exe_path -Encoding Byte -TotalCount 2 -ErrorAction SilentlyContinue",
                 "if (-not $bytes -or $bytes[0] -ne 0x4D -or $bytes[1] -ne 0x5A) {",
-                "    Write-Host '==> 错误：下载失败！服务器返回了网页(可能仍被拦截)，而不是可执行文件。' -ForegroundColor Red",
+                # 错误：下载失败！服务器返回了网页(可能仍被拦截)，而不是可执行文件。
                 "    if (Test-Path $exe_path) { Remove-Item $exe_path -Force }",
                 "    exit 1",
                 "}",
-                "Write-Host '==> 可执行文件头 (MZ) 校验通过！' -ForegroundColor Green"
+                # 可执行文件头 (MZ) 校验通过！
             ]
         },
         "arm64": {
             "url": "https://fastly.jsdelivr.net/gh/ScoopInstaller/Scoop@master/LICENSE#/dummy.txt",
             "hash": "92c2b8f7e3b344a307889ff5f55dc3d7fa048f846845549df0e33e44e5939476",
             "pre_install": [
-                "Write-Host '==> 拦截向日葵源站 WAF (防爬虫) 保护... 正在请求底层静态 CDN' -ForegroundColor Cyan",
+                # 拦截向日葵源站 WAF (防爬虫) 保护... 正在请求底层静态 CDN
                 "$dl_url = \"https://dl.oray.com/sl/windows/AweSun_arm64_${version}.exe\"",
                 "$exe_path = \"$dir\\SunloginClient_arm64.exe\"",
-                "Write-Host \"    正在下载: $dl_url\" -ForegroundColor Yellow",
                 "$headers = @{",
                 "    'User-Agent' = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'",
                 "    'Referer' = 'https://sunlogin.oray.com/'",
@@ -75,16 +72,16 @@
                 "try {",
                 "    Invoke-WebRequest -Uri $dl_url -OutFile $exe_path -Headers $headers -UseBasicParsing -ErrorAction Stop",
                 "} catch {",
-                "    Write-Host \"==> 首次下载尝试失败 ($($_.Exception.Message))，切换至 curl.exe 备用引擎...\" -ForegroundColor Yellow",
+                # 首次下载尝试失败 ($($_.Exception.Message))，切换至 curl.exe 备用引擎...
                 "    & curl.exe -L -A 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36' -e 'https://sunlogin.oray.com/' -o \"$exe_path\" \"$dl_url\"",
                 "}",
                 "$bytes = Get-Content -Path $exe_path -Encoding Byte -TotalCount 2 -ErrorAction SilentlyContinue",
                 "if (-not $bytes -or $bytes[0] -ne 0x4D -or $bytes[1] -ne 0x5A) {",
-                "    Write-Host '==> 错误：下载失败！服务器返回了网页(可能仍被拦截)，而不是可执行文件。' -ForegroundColor Red",
+                # 错误：下载失败！服务器返回了网页(可能仍被拦截)，而不是可执行文件。
                 "    if (Test-Path $exe_path) { Remove-Item $exe_path -Force }",
                 "    exit 1",
                 "}",
-                "Write-Host '==> 可执行文件头 (MZ) 校验通过！' -ForegroundColor Green"
+                # 可执行文件头 (MZ) 校验通过！
             ]
         }
     },
