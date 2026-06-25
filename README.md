@@ -2,5 +2,5 @@
 
 ## Add Bucket
 ```
-scoop bucket add sparkebucket https://ghproxy.home.sdhsparke.com/https://github.com/sdh1986/sparkebucket
+scoop bucket add sparkebucket https://gh-proxy.org/https://github.com/sdh1986/sparkebucket
 ```
