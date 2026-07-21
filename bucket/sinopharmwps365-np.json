@@ -1,10 +1,10 @@
 {
-    "version": "12.1.0.20305",
+    "version": "12.1.0.26895",
     "description": "Sinopharm Personal WPS 365",
     "homepage": "https://www.wps.cn",
     "license": "Proprietary",
-    "url": "https://wpsplus-prod.ks3-cn-beijing.ksyun.com/wps_windows_custom_pack_1776909618866072781/sinopharm-sn-setup_CN_2052_12.1.0.20305_Personal_WPS365_international51.854.exe?Expires=1792461810&AWSAccessKeyId=AKLTFlK09C54QAiYpBcdt9Sn&Signature=23JcIfJf7ZpqODjvUkIHQFQ6GbA%3D#/wps-setup.exe",
-    "hash": "D0292FA3E4572FE199875B9D1DD615A859461A828EA7ED3126608F3CB225265E",
+    "url": "https://wpsplus-prod.ks3-cn-beijing.ksyun.com/wps_windows_custom_pack_1784632005267514385/sinopharm-sn-WPS365_Office_12.1.0.26895_gyjt072051.854.exe?Expires=2100856228&AWSAccessKeyId=AKLTFlK09C54QAiYpBcdt9Sn&Signature=UndDj3wPiOj8aalkANVvdFgAPy8%3D#/wps-setup.exe",
+    "hash": "5a2e7ed68d61a8e06620ea9e88ea34ea53db733da2e99d7803e1f32c61a8c2b1",
     "installer": {
         "script": [
             "Write-Host 'Closing running WPS processes to prevent installation hang...' -ForegroundColor Cyan",
