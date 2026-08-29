@@ -7,20 +7,23 @@
     "hash": "d0292fa3e4572fe199875b9d1dd615a859461a828ea7ed3126608f3cb225265e",
     "installer": {
         "script": [
+            "if (!(is_admin)) { abort 'WPS 365 requires administrator rights. Please run scoop from an elevated PowerShell.' }",
             "Write-Host 'Closing running WPS processes to prevent installation hang...' -ForegroundColor Cyan",
-            "Get-Process -Name 'wps*', 'wpp', 'et', 'ksomisc', 'ksolaunch' -ErrorAction SilentlyContinue | Stop-Process -Force -ErrorAction SilentlyContinue",
+            "Get-Process -Name 'wps*', 'wpp', 'et', 'ksomisc', 'ksolaunch', 'wpscenter', 'wpscloudsvr', 'wpscloudsrv' -ErrorAction SilentlyContinue | Stop-Process -Force -ErrorAction SilentlyContinue",
             "Write-Host 'Starting WPS GUI installer...' -ForegroundColor Cyan",
             "Write-Host 'Please follow the on-screen graphical instructions to complete the installation.' -ForegroundColor Yellow",
-            "Start-Process -FilePath \"$dir\\wps-setup.exe\" -WorkingDirectory \"$dir\" -Verb RunAs",
-            "Start-Sleep -Seconds 5",
+            "$p = Start-Process -FilePath \"$dir\\wps-setup.exe\" -WorkingDirectory \"$dir\" -PassThru",
+            "$p.WaitForExit()",
             "while (Get-Process -Name 'wps-setup' -ErrorAction SilentlyContinue) { Start-Sleep -Seconds 2 }",
-            "Write-Host 'Installation GUI closed. Cleaning up background services...' -ForegroundColor Cyan",
-            "Get-Process -Name 'wpscloudsvr', 'wpscloudsrv', 'wpscenter' -ErrorAction SilentlyContinue | Stop-Process -Force -ErrorAction SilentlyContinue",
+            "Write-Host 'Installation GUI closed. Cleaning up background processes...' -ForegroundColor Cyan",
+            "Start-Sleep -Seconds 3",
+            "Get-Process -Name 'wps*', 'wpp', 'et', 'ksomisc', 'ksolaunch', 'kdocs*', 'wpscenter', 'wpscloudsvr', 'wpscloudsrv', 'wpsupdate*' -ErrorAction SilentlyContinue | Stop-Process -Force -ErrorAction SilentlyContinue",
             "Write-Host 'WPS installation process finished.' -ForegroundColor Green"
         ]
     },
     "uninstaller": {
         "script": [
+            "if (!(is_admin)) { abort 'WPS 365 uninstall requires administrator rights. Please run scoop from an elevated PowerShell.' }",
             "Write-Host 'Searching for WPS uninstaller...' -ForegroundColor Cyan",
             "$uninst = $null",
             "",
@@ -49,8 +52,8 @@
             "    Write-Host \"Uninstaller found: $uninst\" -ForegroundColor Green",
             "    Write-Host 'Please follow the uninstaller GUI to remove WPS.' -ForegroundColor Yellow",
             "    $uninstName = [System.IO.Path]::GetFileNameWithoutExtension($uninst)",
-            "    Start-Process -FilePath $uninst -Verb RunAs",
-            "    Start-Sleep -Seconds 3",
+            "    $p = Start-Process -FilePath $uninst -PassThru",
+            "    $p.WaitForExit()",
             "    while (Get-Process -Name $uninstName -ErrorAction SilentlyContinue) { Start-Sleep -Seconds 2 }",
             "    Write-Host 'Uninstall GUI closed. Process finished.' -ForegroundColor Green",
             "} else {",
@@ -64,9 +67,6 @@
         "regex": "(?<url>https://.*?(?<version>\\d+\\.\\d+\\.\\d+\\.\\d+).*)"
     },
     "autoupdate": {
-        "url": "$matchUrl#/wps-setup.exe",
-        "hash": {
-            "mode": "download"
-        }
+        "url": "$matchUrl#/wps-setup.exe"
     }
 }
