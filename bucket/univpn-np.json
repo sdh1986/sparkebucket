@@ -9,23 +9,17 @@
     "url": "https://download.leagsoft.com/download/UniVPN/win/univpn-win-full-10781.20.0.0727-signed.zip",
     "hash": "35079d9eead0557fa8b954ec7ac47be8e4e70d69e8daadbd726b1db8e3788d61",
     "installer": {
-        "script": [
-            "if (!(is_admin)) { abort 'UniVPN requires administrator rights. Please run scoop from an elevated PowerShell.' }",
-            "$exe = (Get-ChildItem -Path \"$dir\" -Filter '*.exe' -Recurse | Select-Object -First 1).FullName",
-            "$p = Start-Process -FilePath $exe -ArgumentList '/S' -Wait -PassThru",
-            "if ($p.ExitCode -ne 0) { abort \"UniVPN installer failed with exit code $($p.ExitCode)\" }"
-        ]
+        "script": "Start-Process -Wait -FilePath (Get-ChildItem -Path \"$dir\" -Filter '*.exe' -Recurse | Select-Object -First 1).FullName -ArgumentList '/S' -Verb RunAs | Out-Null"
     },
     "uninstaller": {
         "script": [
-            "if (!(is_admin)) { abort 'UniVPN uninstall requires administrator rights. Please run scoop from an elevated PowerShell.' }",
             "$tapAdapters = Get-PnpDevice -Class Net -FriendlyName 'TAP-Windows Adapter V9' -ErrorAction SilentlyContinue",
             "if ($tapAdapters) {",
             "    Write-Host 'Found TAP-Windows Adapter V9. Attempting to uninstall...'",
             "    foreach ($adapter in $tapAdapters) {",
             "        $instanceId = $adapter.InstanceID",
             "        Write-Host \"Uninstalling device with Instance ID: $instanceId\"",
-            "        Start-Process -Wait -NoNewWindow -FilePath 'pnputil.exe' -ArgumentList ('/remove-device \"{0}\"' -f $instanceId) | Out-Null",
+            "        Start-Process -Wait -FilePath 'pnputil.exe' -ArgumentList \"/remove-device `\"$instanceId`\"\" -Verb RunAs | Out-Null",
             "    }",
             "} else {",
             "    Write-Host 'TAP-Windows Adapter V9 not found.' -ForegroundColor Yellow",
@@ -33,7 +27,7 @@
             "$uninstallerPath = \"C:\\Program Files (x86)\\UniVPN\\uninst.exe\"",
             "if (Test-Path $uninstallerPath) {",
             "    Write-Host 'Running UniVPN uninstaller from default path...'",
-            "    Start-Process -Wait -NoNewWindow -FilePath $uninstallerPath -ArgumentList '/S' | Out-Null",
+            "    Start-Process -Wait -FilePath $uninstallerPath -ArgumentList '/S' -Verb RunAs | Out-Null",
             "} else {",
             "    Write-Host \"UniVPN uninstaller also not found at default path: '$uninstallerPath'\" -ForegroundColor Red",
             "}"
@@ -44,6 +38,9 @@
         "regex": "univpn-win-full-([\\d.]+)-signed\\.zip"
     },
     "autoupdate": {
-        "url": "https://download.leagsoft.com/download/UniVPN/win/univpn-win-full-$version-signed.zip"
+        "url": "https://download.leagsoft.com/download/UniVPN/win/univpn-win-full-$version-signed.zip",
+        "hash": {
+            "mode": "download"
+        }
     }
 }
