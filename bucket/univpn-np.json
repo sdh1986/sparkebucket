@@ -9,15 +9,7 @@
     "url": "https://download.leagsoft.com/download/UniVPN/win/univpn-win-full-10781.20.0.0727-signed.zip",
     "hash": "35079d9eead0557fa8b954ec7ac47be8e4e70d69e8daadbd726b1db8e3788d61",
     "installer": {
-        "script": [
-            "$exe = (Get-ChildItem -Path \"$dir\" -Filter '*.exe' -Recurse | Select-Object -First 1).FullName",
-            "$isAdmin = ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)",
-            "if ($isAdmin) {",
-            "    Start-Process -Wait -WindowStyle Hidden -FilePath $exe -ArgumentList '/S' | Out-Null",
-            "} else {",
-            "    Start-Process -Wait -FilePath $exe -ArgumentList '/S' -Verb RunAs | Out-Null",
-            "}"
-        ]
+        "script": "Start-Process -Wait -FilePath (Get-ChildItem -Path \"$dir\" -Filter '*.exe' -Recurse | Select-Object -First 1).FullName -ArgumentList '/S' -Verb RunAs | Out-Null"
     },
     "uninstaller": {
         "script": [
