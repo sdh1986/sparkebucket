@@ -7,7 +7,7 @@
         "url": "https://www.leagsoft.com/doc/article/103107.html"
     },
     "url": "https://download.leagsoft.com/download/UniVPN/win/univpn-win-full-10781.20.0.0727-signed.zip",
-    "hash": "ad7d8f0daa2926062142d06ce41e3391ba2376400ee1d38f4f082cdff3022cec",
+    "hash": "35079d9eead0557fa8b954ec7ac47be8e4e70d69e8daadbd726b1db8e3788d61",
     "installer": {
         "script": "Start-Process -Wait -FilePath (Get-ChildItem -Path \"$dir\" -Filter '*.exe' -Recurse | Select-Object -First 1).FullName -ArgumentList '/S' -Verb RunAs | Out-Null"
     },
