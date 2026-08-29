@@ -8,29 +8,19 @@
     "installer": {
         "script": [
             "Write-Host 'Closing running WPS processes to prevent installation hang...' -ForegroundColor Cyan",
-            "Get-Process -Name 'wps*', 'wpp', 'et', 'ksomisc', 'ksolaunch', 'wpscenter', 'wpscloudsvr', 'wpscloudsrv' -ErrorAction SilentlyContinue | Stop-Process -Force -ErrorAction SilentlyContinue",
-            "$env:__WPS_SETUP = \"$dir\\wps-setup.exe\"",
-            "$body = @'",
-            "$p = Start-Process -FilePath $env:__WPS_SETUP -WorkingDirectory (Split-Path $env:__WPS_SETUP) -PassThru",
-            "$p.WaitForExit()",
-            "while (Get-Process -Name 'wps-setup' -ErrorAction SilentlyContinue) { Start-Sleep -Seconds 2 }",
-            "Start-Sleep -Seconds 3",
-            "Get-Process -Name 'wps*', 'wpp', 'et', 'ksomisc', 'ksolaunch', 'kdocs*', 'wpscenter', 'wpscloudsvr', 'wpscloudsrv', 'wpsupdate*' -ErrorAction SilentlyContinue | Stop-Process -Force -ErrorAction SilentlyContinue",
-            "'@",
+            "Get-Process -Name 'wps*', 'wpp', 'et', 'ksomisc', 'ksolaunch' -ErrorAction SilentlyContinue | Stop-Process -Force -ErrorAction SilentlyContinue",
             "Write-Host 'Starting WPS GUI installer...' -ForegroundColor Cyan",
             "Write-Host 'Please follow the on-screen graphical instructions to complete the installation.' -ForegroundColor Yellow",
-            "if (is_admin) { Invoke-Expression $body } else {",
-            "    Write-Host 'Requesting administrator privileges for WPS 365 installation...' -ForegroundColor Yellow",
-            "    $enc = [Convert]::ToBase64String([Text.Encoding]::Unicode.GetBytes($body))",
-            "    Start-Process powershell -Verb RunAs -ArgumentList '-NoProfile','-ExecutionPolicy','Bypass','-EncodedCommand',$enc -Wait",
-            "}",
-            "Remove-Item Env:__WPS_SETUP -ErrorAction SilentlyContinue",
+            "Start-Process -FilePath \"$dir\\wps-setup.exe\" -WorkingDirectory \"$dir\" -Verb RunAs",
+            "Start-Sleep -Seconds 5",
+            "while (Get-Process -Name 'wps-setup' -ErrorAction SilentlyContinue) { Start-Sleep -Seconds 2 }",
+            "Write-Host 'Installation GUI closed. Cleaning up background services...' -ForegroundColor Cyan",
+            "Get-Process -Name 'wpscloudsvr', 'wpscloudsrv', 'wpscenter' -ErrorAction SilentlyContinue | Stop-Process -Force -ErrorAction SilentlyContinue",
             "Write-Host 'WPS installation process finished.' -ForegroundColor Green"
         ]
     },
     "uninstaller": {
         "script": [
-            "$body = @'",
             "Write-Host 'Searching for WPS uninstaller...' -ForegroundColor Cyan",
             "$uninst = $null",
             "",
@@ -58,17 +48,13 @@
             "if ($uninst -and (Test-Path $uninst)) {",
             "    Write-Host \"Uninstaller found: $uninst\" -ForegroundColor Green",
             "    Write-Host 'Please follow the uninstaller GUI to remove WPS.' -ForegroundColor Yellow",
-            "    $p = Start-Process -FilePath $uninst -PassThru",
-            "    $p.WaitForExit()",
+            "    $uninstName = [System.IO.Path]::GetFileNameWithoutExtension($uninst)",
+            "    Start-Process -FilePath $uninst -Verb RunAs",
+            "    Start-Sleep -Seconds 3",
+            "    while (Get-Process -Name $uninstName -ErrorAction SilentlyContinue) { Start-Sleep -Seconds 2 }",
             "    Write-Host 'Uninstall GUI closed. Process finished.' -ForegroundColor Green",
             "} else {",
             "    Write-Host 'WPS uninstaller not found.' -ForegroundColor Red",
-            "}",
-            "'@",
-            "if (is_admin) { Invoke-Expression $body } else {",
-            "    Write-Host 'Requesting administrator privileges for WPS 365 uninstallation...' -ForegroundColor Yellow",
-            "    $enc = [Convert]::ToBase64String([Text.Encoding]::Unicode.GetBytes($body))",
-            "    Start-Process powershell -Verb RunAs -ArgumentList '-NoProfile','-ExecutionPolicy','Bypass','-EncodedCommand',$enc -Wait",
             "}"
         ]
     },
@@ -78,6 +64,9 @@
         "regex": "(?<url>https://.*?(?<version>\\d+\\.\\d+\\.\\d+\\.\\d+).*)"
     },
     "autoupdate": {
-        "url": "$matchUrl#/wps-setup.exe"
+        "url": "$matchUrl#/wps-setup.exe",
+        "hash": {
+            "mode": "download"
+        }
     }
 }
