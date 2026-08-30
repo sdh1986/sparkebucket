@@ -15,7 +15,7 @@
       "Start-Sleep -Seconds 5",
       "while (Get-Process -Name 'wps-setup' -ErrorAction SilentlyContinue) { Start-Sleep -Seconds 2 }",
       "Write-Host 'Installation GUI closed. Cleaning up background services...' -ForegroundColor Cyan",
-      "$wpsProcs = 'wps', 'wpp', 'et', 'wpspdf', 'wpscloudsvr', 'wpscloudsrv', 'wpscenter', 'wpsupdate', 'ksomisc', 'ksolaunch', 'kdocs', 'kdocscloud', 'kxe*'",
+      "$wpsProcs = 'wps*', 'wpp', 'et', 'wpspdf', 'ksomisc', 'ksolaunch', 'kdocs', 'kdocscloud', 'kxe*'",
       "foreach ($round in 1..3) {",
       "Get-Process -Name $wpsProcs -ErrorAction SilentlyContinue | Stop-Process -Force -ErrorAction SilentlyContinue",
       "Start-Sleep -Seconds 2",
