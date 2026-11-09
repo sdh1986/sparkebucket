@@ -12,7 +12,7 @@
       "Write-Host 'Starting WPS GUI installer...' -ForegroundColor Cyan",
       "Write-Host 'Please follow the on-screen graphical instructions to complete the installation.' -ForegroundColor Yellow",
       "Write-Host 'The script will auto-continue once installation completes; leftover installer windows will be closed automatically.' -ForegroundColor Gray",
-      "Start-Process -FilePath \"$dir\\wps-setup.exe\" -WorkingDirectory \"$dir\" -Verb RunAs",
+      "Start-Process -FilePath \"$dir\\wps-setup.exe\" -ArgumentList '/S', '-agreelicense' -WorkingDirectory \"$dir\" -Verb RunAs",
       "Start-Sleep -Seconds 5",
       "$maxWaitSec = 900",
       "$elapsed = 0",
